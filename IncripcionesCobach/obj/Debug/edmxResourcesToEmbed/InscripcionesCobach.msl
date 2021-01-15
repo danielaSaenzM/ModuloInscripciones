@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InscripcionesModelStoreContainer" CdmEntityContainer="InscripcionesEntities">
+    <FunctionImportMapping FunctionImportName="sp_UpdatePago" FunctionName="InscripcionesModel.Store.sp_UpdatePago" />
+    <FunctionImportMapping FunctionImportName="sp_GetCostoPlantel" FunctionName="InscripcionesModel.Store.sp_GetCostoPlantel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InscripcionesModel.sp_GetCostoPlantel_Result13">
+          <ScalarProperty Name="Plantel" ColumnName="Plantel" />
+          <ScalarProperty Name="idPlantel" ColumnName="idPlantel" />
+          <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+          <ScalarProperty Name="CveGrupo" ColumnName="CveGrupo" />
+          <ScalarProperty Name="pagoInscripcion" ColumnName="pagoInscripcion" />
+          <ScalarProperty Name="pagoSA" ColumnName="pagoSA" />
+          <ScalarProperty Name="idCostos" ColumnName="idCostos" />
+          <ScalarProperty Name="PlantelNum" ColumnName="PlantelNum" />
+          <ScalarProperty Name="CIE" ColumnName="CIE" />
+          <ScalarProperty Name="Inscripcion" ColumnName="Inscripcion" />
+          <ScalarProperty Name="SociedadAlumnos" ColumnName="SociedadAlumnos" />
+          <ScalarProperty Name="TM" ColumnName="TM" />
+          <ScalarProperty Name="TV" ColumnName="TV" />
+          <ScalarProperty Name="idMatricula" ColumnName="idMatricula" />
+          <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_UploadPago" FunctionName="InscripcionesModel.Store.sp_UploadPago" />
+  </EntityContainerMapping>
+</Mapping>

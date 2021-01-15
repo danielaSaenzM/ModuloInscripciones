@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InscripcionesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="sp_GetCostoPlantel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Matricula" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_UpdatePago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Matricula" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Codigo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Importe" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_UploadPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Matricula" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="InscripcionesModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InscripcionesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="InscripcionesEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="sp_UpdatePago" ReturnType="Collection(Int32)">
+            <Parameter Name="Matricula" Mode="In" Type="String" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Importe" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetCostoPlantel" ReturnType="Collection(InscripcionesModel.sp_GetCostoPlantel_Result13)">
+          <Parameter Name="Matricula" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UploadPago">
+            <Parameter Name="Matricula" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_GetCostoPlantel_Result">
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="Plantel" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel1_Result">
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="Plantel" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel2_Result">
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="Plantel" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result1">
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="Plantel" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result2">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="Plantel1" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result3">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result4">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="Matricula1" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result5">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result6">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="true" />
+          <Property Type="Boolean" Name="pagoSociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result7">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="true" />
+          <Property Type="Boolean" Name="pagoSociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result8">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="true" />
+          <Property Type="Boolean" Name="pagoSA" Nullable="true" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result9">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="true" />
+          <Property Type="Boolean" Name="pagoSA" Nullable="true" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+          <Property Type="String" Name="Matricula1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result10">
+          <Property Type="String" Name="Plantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="idPlantel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Matricula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CveGrupo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="true" />
+          <Property Type="Boolean" Name="pagoSA" Nullable="true" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+          <Property Type="String" Name="MatriculaReg" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result11">
+          <Property Type="String" Name="Plantel" Nullable="false" MaxLength="41" />
+          <Property Type="Int32" Name="idPlantel" Nullable="false" />
+          <Property Type="Int32" Name="Matricula" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="45" />
+          <Property Type="Int32" Name="CveGrupo" Nullable="false" />
+          <Property Type="Int32" Name="NoAcreditadas" Nullable="false" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="false" />
+          <Property Type="Boolean" Name="pagoSA" Nullable="false" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result12">
+          <Property Type="String" Name="Plantel" Nullable="false" MaxLength="41" />
+          <Property Type="Int32" Name="idPlantel" Nullable="false" />
+          <Property Type="Int32" Name="Matricula" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="45" />
+          <Property Type="Int32" Name="CveGrupo" Nullable="false" />
+          <Property Type="Int32" Name="NoAcreditadas" Nullable="false" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="false" />
+          <Property Type="Boolean" Name="pagoSA" Nullable="false" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="String" Name="TM" Nullable="true" />
+          <Property Type="String" Name="TV" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCostoPlantel_Result13">
+          <Property Type="String" Name="Plantel" Nullable="false" MaxLength="41" />
+          <Property Type="Int32" Name="idPlantel" Nullable="false" />
+          <Property Type="Int32" Name="Matricula" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="45" />
+          <Property Type="Int32" Name="CveGrupo" Nullable="false" />
+          <Property Type="Boolean" Name="pagoInscripcion" Nullable="false" />
+          <Property Type="Boolean" Name="pagoSA" Nullable="false" />
+          <Property Type="Int32" Name="idCostos" Nullable="false" />
+          <Property Type="String" Name="PlantelNum" Nullable="true" />
+          <Property Type="String" Name="CIE" Nullable="true" />
+          <Property Type="Int32" Name="Inscripcion" Nullable="true" />
+          <Property Type="Int32" Name="SociedadAlumnos" Nullable="true" />
+          <Property Type="String" Name="TM" Nullable="true" />
+          <Property Type="String" Name="TV" Nullable="true" />
+          <Property Type="Int32" Name="idMatricula" Nullable="true" />
+          <Property Type="Int32" Name="Referencia" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InscripcionesModelStoreContainer" CdmEntityContainer="InscripcionesEntities" >
+          <FunctionImportMapping FunctionImportName="sp_UpdatePago" FunctionName="InscripcionesModel.Store.sp_UpdatePago" />
+          <FunctionImportMapping FunctionImportName="sp_GetCostoPlantel" FunctionName="InscripcionesModel.Store.sp_GetCostoPlantel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InscripcionesModel.sp_GetCostoPlantel_Result13">
+                <ScalarProperty Name="Plantel" ColumnName="Plantel" />
+                <ScalarProperty Name="idPlantel" ColumnName="idPlantel" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="CveGrupo" ColumnName="CveGrupo" />
+                <ScalarProperty Name="pagoInscripcion" ColumnName="pagoInscripcion" />
+                <ScalarProperty Name="pagoSA" ColumnName="pagoSA" />
+                <ScalarProperty Name="idCostos" ColumnName="idCostos" />
+                <ScalarProperty Name="PlantelNum" ColumnName="PlantelNum" />
+                <ScalarProperty Name="CIE" ColumnName="CIE" />
+                <ScalarProperty Name="Inscripcion" ColumnName="Inscripcion" />
+                <ScalarProperty Name="SociedadAlumnos" ColumnName="SociedadAlumnos" />
+                <ScalarProperty Name="TM" ColumnName="TM" />
+                <ScalarProperty Name="TV" ColumnName="TV" />
+                <ScalarProperty Name="idMatricula" ColumnName="idMatricula" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UploadPago" FunctionName="InscripcionesModel.Store.sp_UploadPago" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,19 @@
+﻿@using IncripcionesCobach.Models
+@model LoginViewModel
+
+
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron text-center">
+    <img class="text-center cobach" src="~/Content/Imagen/LOGO cobachv2.jpg" />
+    <h2>Colegio de Bachilleres del Estado de Chihuahua</h2>
+    <p class="lead">Modulo de Inscripciones </p>
+    @Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-success  btn-lg" })
+    
+</div>

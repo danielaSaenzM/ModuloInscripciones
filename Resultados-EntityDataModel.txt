@@ -1,0 +1,12 @@
+﻿Archivo de modelo generado: InscripcionesCobach.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.6751216.
+La generación del modelo tardó 00:00:00.6095361.
+Archivo de modelo generado: InscripcionesCobach.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.3827978.
+La generación del modelo tardó 00:00:00.4692596.
+Archivo de modelo generado: InscripcionesCobach.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.3786182.
+La generación del modelo tardó 00:00:00.3207571.
+Archivo de modelo generado: InscripcionesCobach.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.5408226.
+La generación del modelo tardó 00:00:00.3690496.

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - COBACH</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+        <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+        <script src="~/Scripts/html2canvas.min.js"></script>
+        <script src="//cdn.datatables.net/plug-ins/1.10.16/api/sum().js"></script>
+        <script src="~/Scripts/InscripcionesJs.js"></script>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <p class="navbar-brand">Colegio de Bachilleres del Estado de Chihuahua</p>
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    @*<ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    </ul>*@
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <div class="container body-content">
+                    <div class="row">
+                        <img alt="" src="../imgs/logo Sitio gris.png"><br /><br />
+                        <abbr title="Address">Dirección : Avenida Juárez # 1402 Col. Centro, Chihuahua, Chih. México</abbr><br /><br />
+                        <abbr title="Phone">Telefono: (614) 238-3000</abbr><br /><br />
+                        <abbr title="Mail">Correo: <a href="mailto:contacto@cobachih.edu.mx">contacto@cobachih.edu.mx</a></abbr><br />
+                        <a class="social social-facebook" style="color: #aaaaaa !important;" href="https://facebook.com/yosoycobach"></a>
+                        <a class="social social-twitter" style="color: #aaaaaa !important;" href="https://twitter.com/COBACHIH_DG"></a><br /><br />
+                    </div>
+                    <div class="row">
+                        <p>Enlaces</p>
+                        <ul class="enlaces-externos">
+                            <li><a href="http://www.cobachih.edu.mx/Diagnostica/EvaluacionCurso.aspx">Evaluación Curso Propedeutico</a></li>
+                            <li><a href="http://appsrv2016.cobachih.edu.mx/portalalumnos/Encuestas/Tutorias">Encuestas de Tutorias</a></li>
+                            <li><a href="http://appsrv2016.cobachih.edu.mx/portalalumnos/Encuestas/IPA-C">Encuesta IPA-C</a></li>
+                            <li><a href="http://www.cobachih.edu.mx/Portals/0/Documentos/Cursos/cecadeAgo-Sep.pdf?ver=2016-08-11-120201-823"></a>Cursos: CECADE</li>
+                            <li><a href="http://centost.cobachih.edu.mx/encuesta/index.html">Encuestas de egresados ----</a> <a href="http://apps.cobachih.edu.mx/encuestasporegresar/index.php">Encuesta Próximos a Egresar</a></li>
+                            <li><a href="http://apps.cobachih.edu.mx/clientes/index.php">Encuestas de satisfacción al cliente</a></li>
+                            <li><a href="https://es.surveymonkey.com/r/dialogosocial2018">Encuesta Dialogo Social</a></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <p>En el Colegio de Bachilleres del Estado de Chihuahua aspiramos a lograr la formación integral de sus hijos, con maestros preparados...</p>
+                        <p><a href="http://www.cobachih.edu.mx/Colegio/Con%C3%B3cenos/Mensaje-de-la-Directora-General">Leer Más</a></p><br />
+                        <center>
+                            <div class="row">
+                                <img height="80" width="80" src="~/imgs/CNDH.png" />
+                                <img height="80" width="80" src="~/imgs/ConstruyeT.png" />
+                                <img height="80" width="80" src="~/imgs/DGB.png" />
+                                <img height="80" width="80" src="~/imgs/ICHITAIP.png" />
+                                <img height="80" width="80" src="~/imgs/INFOmexi.png" />
+                                <img height="80" width="80" src="~/imgs/layout_set_logo.png" />
+                                <img height="80" width="120" src="~/imgs/logo SEP 2019 color.png" />
+                                <img height="80" width="80" src="~/imgs/logo_inai.png" />
+                                <img height="80" width="120" src="~/imgs/PorTransp.png" />
+                            </div>
+                        </center><br />
+                        <center><p>&copy; @DateTime.Now.Year Colegio de Bachilleres del Estado de Chihuahua | V.1.19</p></center>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>

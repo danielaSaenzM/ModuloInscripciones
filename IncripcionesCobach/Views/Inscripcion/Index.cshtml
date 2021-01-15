@@ -1,0 +1,320 @@
+﻿@model IncripcionesCobach.Models.InscripcionViewModel
+@using Microsoft.AspNet.Identity
+
+@{
+    /**/
+
+    ViewBag.Title = "Información de - " + " " + User.Identity.GetUserName();
+}
+<br />
+
+
+
+
+@if (Model.Nodata != null)
+{
+    <div class="alert alert-danger text-center" role="alert"> <strong>@Html.DisplayFor(model => model.Nodata)</strong> </div>
+}
+
+
+
+
+else
+{
+    <div class="alert alert-info text-center" role="alert"> Una vez realizado el pago de la <strong> Inscripción y Sociedad de Alumnos</strong> manda un correo con la foto de tu recibo de pago a la siguiente dirección dependeindo de tu turno <br /> <strong>Turno Matutino: @Model.TurnoM</strong> : <strong>Turno Vespertino: @Model.TurnoV</strong> </div>
+    if (Model.pagoInscripcion == false)
+    {
+
+        <div class="alert alert-danger text-center" role="alert"> <strong>Favor de realizar el pago de Inscripción.</strong> </div>
+    }
+    if (Model.pagoSA == false)
+    {
+
+        <div class="alert alert-danger text-center" role="alert"> <strong>Favor de realizar el pago de Sociedad de Alumnos.</strong> </div>
+    }
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Información</div>
+            <div class="panel-body">
+                <div class=" text-center col-md-12">
+
+                    <div class="col-md-2">
+                        <div class="input-group ">
+                            <span class="input-group-addon" id="basic-addon3">Grupo</span>
+                            @Html.EditorFor(model => model.CveGrupo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">Nombre Completo</span>
+                            @Html.EditorFor(model => model.NombreCompleto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">Matricula</span>
+                            @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <input type="button" id="button_2" value="Descargar Fichas de Pago" onclick="genPDFPagoAll();" class="btn btn-success " />
+            @if (Model.pagoInscripcion == false)
+            {
+                @Html.ActionLink("Pagar Inscripción", "pagoInscripcion", "Pago", new { matricula = Model.Matricula }, new { @class = "btn btn-success pgr", target = "_blank" })
+            }
+            @if (Model.pagoSA == false)
+            {
+                @Html.ActionLink("Pagar Sociedad de Alumnos", "pagoSociedadAlumnos", "Pago", new { matricula = Model.Matricula }, new { @class = "btn btn-success pgr", target = "_blank" })
+            }
+            <a href="~/Pago/ComprobantePago" class="btn btn-success pgr" target="_blank">Subir Comprobante de Pago</a>
+            @*@Html.ActionLink("Subir Comprobante de Pago", "ComprobantePago", "Pago", new { @class = "btn btn-success pgr", target = "_blank" })*@
+        </div>
+        <br />
+        <div class="container rend" id="FichasPago">
+
+            <div class="row border1" id="inscripcion">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <img class="bbva" src="~/Content/Imagen/bbva.jpg" />
+                    </div>
+                    <div class="col-md-5">
+                        <h3>INSCRIPCIÓN SEM 21-A</h3>
+                        @if (Model.pagoInscripcion == true)
+                        {
+                            <div class="alert alert-success " role="alert"> <strong>El pago de Inscripción ha sido realizado.</strong> </div>
+                        }
+                    </div>
+                    <div class="col-md-2">
+
+                        <img class="rad" src="~/Content/Imagen/radiolito.png" />
+
+
+                    </div>
+                    <div class="col-md-1">
+                        <br />
+                        <h6 class="text-center"><b>@Model.Plantel</b></h6>
+
+
+                    </div>
+                </div>
+                <div class="col-md-12 border2">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Nombre del Cliente
+                            </td>
+                            <td>
+                                CIE
+                            </td>
+                            <td>
+                                Importe
+                            </td>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <b>Colegio de Bachilleres del Estado de Chihuahua</b>
+                                </td>
+                                <td class="infoImport">
+                                    <b>@Model.CIE</b>
+                                </td>
+                                <td class="infoImport">
+                                    <b>@string.Format("{0:C}", Convert.ToDecimal(Model.Inscripcion))</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-12">
+                    <br />
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                        <ul class="list-group ">
+                            <li class="list-group-itempago">Referencia: <b class="infoImport">@Model.Referencia</b> </li>
+                            <li class="list-group-itempago">Nombre: <b class="infoImport">@Model.NombreCompleto</b></li>
+                            <li class="list-group-itempago">Concepto: <b class="infoImport">211</b></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="list-group ">
+                            <li class="list-group-itempago">Matrícula: <b>@Model.Matricula</b> </li>
+                            <li class="list-group-itempago">Grupo: <b>@Model.CveGrupo</b></li>
+                            <li class="list-group-itempago">Semestre: <b>@Model.Semestre</b></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <h2> FICHA DE DEPÓSITO  <strong><u>INTRANSFERIBLE</u></strong>, APLICA EXCLUSIVAMENTE AL ALUMNO Y SEMESTRE SEÑALADOS. EVITA APARECER COMO DEUDOR.</h2>
+                    </div>
+                </div>
+            </div>
+
+
+            <br />
+
+            <div class="row border1" id="sociedad">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <img class="bbva" src="~/Content/Imagen/bbva.jpg" />
+                    </div>
+                    <div class="col-md-5">
+
+                        <h3>SOCIEDAD DE ALUMNOS SEM 21-A</h3>
+                        @if (Model.pagoSA == true)
+                        {
+                            <div class="alert alert-success" role="alert"> <strong>El pago de Sociedad de Alumnos  ha sido realizado.</strong> </div>
+                        }
+                    </div>
+                    <div class="col-md-2">
+
+                        <img class="rad" src="~/Content/Imagen/radiolito.png" />
+
+
+                    </div>
+                    <div class="col-md-1">
+                        <br />
+                        <h6 class="text-center"><b>@Model.Plantel</b></h6>
+
+
+                    </div>
+                </div>
+                <div class="col-md-12 border2">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Nombre del Cliente
+                            </td>
+                            <td>
+                                CIE
+                            </td>
+                            <td>
+                                Importe
+                            </td>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <b>Colegio de Bachilleres del Estado de Chihuahua</b>
+                                </td>
+                                <td class="infoImport">
+                                    <b>@Model.CIE</b>
+                                </td>
+                                <td class="infoImport">
+                                    <b>@string.Format("{0:C}", Convert.ToDecimal(Model.sociedadAlumnos))</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-12">
+                    <br />
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                            <li class="list-group-itempago ">Referencia: <b class="infoImport">@Model.Referencia</b> </li>
+                            <li class="list-group-itempago">Nombre: <b class="infoImport">@Model.NombreCompleto</b></li>
+                            <li class="list-group-itempago">Concepto: <b class="infoImport">213</b></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                            <li class="list-group-itempago">Matrícula: <b>@Model.Matricula</b> </li>
+                            <li class="list-group-itempago">Grupo: <b>@Model.CveGrupo</b></li>
+                            <li class="list-group-itempago">Semestre: <b>@Model.Semestre</b></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <h2> FICHA DE DEPÓSITO  <strong><u>INTRANSFERIBLE</u></strong>, APLICA EXCLUSIVAMENTE AL ALUMNO Y SEMESTRE SEÑALADOS. EVITA APARECER COMO DEUDOR. </h2>
+                    </div>
+                </div>
+            </div>
+
+
+            <br />
+            <div class="row border1 " id="prevee">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <img class="bbva" src="~/Content/Imagen/bbva.jpg" />
+                    </div>
+                    <div class="col-md-5">
+                        <h3>PROGRAMA PREVEE SEM 21-A</h3>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <h6 class="text-center"><b>@Model.Plantel</b></h6>
+                    </div>
+
+                </div>
+                <div class="col-md-12 border2">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Nombre del Cliente
+                            </td>
+                            <td>
+                                Número de Cuenta
+                            </td>
+                            <td>
+                                Importe
+                            </td>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <b>TECNOLOGIAS RETHOS S DE RL DE CV</b>
+                                </td>
+                                <td class="infoImport">
+                                    <b>0199661220</b>
+                                </td>
+                                <td class="infoImport">
+                                    <b>$90.00</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-12">
+                    <br />
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                            <li class="list-group-itempago ">Referencia: <b class="infoImport">@Model.Matricula</b> </li>
+                            <li class="list-group-itempago">Concepto: <b class="infoImport">@Model.NombreCompleto</b></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                            <li class="list-group-itempago">Matrícula: <b>@Model.Matricula</b> </li>
+                            <li class="list-group-itempago">Grupo: <b>@Model.CveGrupo</b></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <h2>
+                            FICHA DE DEPÓSITO  <strong><u>INTRANSFERIBLE</u></strong>,  AMPARA ÚNICAMENTE LA MATRÍCULA Y EL PERIODO AQUÍ IMPRESOS. NO ES VALIDA PARA PAGAR SEMESTRES ANTERIORES.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+}
+
+
+
+

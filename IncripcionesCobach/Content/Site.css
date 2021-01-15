@@ -1,0 +1,150 @@
+﻿navbar-collapse collapse {
+    background-color: #ffffff;
+
+}
+navbar navbar-inverse navbar-fixed-top {
+    background-color: #ffffff;
+}
+navbar-header {
+    background-color: #ffffff;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.bbva {
+    width: 50%;
+}
+
+.rad {
+    width: 100px;
+    float: right;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: none !important;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: none !important;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.border1 {
+    border: 2px solid black;
+}
+
+.border2 {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.infoImport {
+    background-color: lightgray;
+    padding: 5px;
+}
+
+.rend {
+    width: 100%;
+}
+
+.google-icon {
+    margin-left: 1px;
+    margin-right: 4px;
+    width: 25px;
+    height: 25px;
+}
+
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555555;
+    text-align: center;
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+img#btnPagar {
+    width: 50px;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #E1FFE1 !important;
+    border: none !important;
+}
+
+.list-group-itempago {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff !important;
+    border: none !important;
+}
+
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #FFF !important;
+}
+
+img.text-center.cobach {
+    width: 30%;
+}
+
+footer {
+    background-color: #333333 !important;
+    color: #c8c8bb !important;
+    padding-top: 50px !important;
+    padding-bottom: 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+.a, .a:link, .a:active, .a:visited, .a:hover {
+    color: #00923f;
+}

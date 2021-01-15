@@ -1,0 +1,238 @@
+﻿@model List<IncripcionesCobach.Models.PapeletasAdeudo>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                'paging': true,
+                'scrollX': true,
+                'pageLength': 10
+            });
+        });
+    </script>
+    <script>
+        $("#li_1").addClass('disabled');
+        $("#li_2").addClass('disabled');
+    </script>
+    <style>
+        .disabled {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+    
+</head>
+
+<body id="test">
+    <h2>@ViewBag.Title:</h2>
+
+    <br />
+
+    <div class="row">
+        <div class="col-lg-9 mb-4">
+            @using (Html.BeginForm("DisplayPapeleta2", "Home", FormMethod.Post, new { id = "frm-display" }))
+            {
+                <div class="col-lg-2 col-md-4">
+                    <br />
+                    <label>Consulta una papeleta:</label>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <div class="form-group">
+                        <label>Matricula:</label>
+                        <input type="text" id="Matricula" name="Matricula" style="width:100px" />
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <div class="form-group">
+                        <br />
+                        <input type="submit" class="btn btn-success" value="Consultar" />
+                        @ViewData["PapelError"]
+                    </div>
+                </div>
+            }
+
+            @using (Html.BeginForm("Index4Admin", "Home", FormMethod.Post, new { id = "frm-display" }))
+            {
+                <div class="col-lg-2 col-md-4">
+                    <br />
+                    <label>Generar una nueva papeleta:</label>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <div class="form-group">
+                        <label>Matricula:</label>
+                        <input type="text" id="Matricula" name="Matricula" style="width:100px" />
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <div class="form-group">
+                        <br />
+                        <input type="submit" class="btn btn-success" value="Generar" />
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-3 mb-4">
+            <div class="col-lg-8 col-md-4">
+                <div class="form-group">
+                    <br />
+                    <label>Generar un reporte: </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="form-group">
+                    <br />
+                    @Html.ActionLink("Ir a reportes", "Reportes", "Home", new { @class = "btn btn-success" })
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-4">
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="background-color:#008574; height:5px;width: 100%;" /><br />
+
+    @if ((string)TempData["empty"] != "EMPTY")
+    {
+        <div class="row">
+            <!-- DataTable -->
+            <div class="col-lg-12 mb-4" style="width:120%">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <table id="example" class="display" cellspacing="0" width="100%" style="overflow-x: auto;">
+                                <thead>
+                                    <tr>
+                                        <th>Materia</th>
+                                        <th>Plantel</th>
+                                        <th>Alumno</th>
+                                        <th>Matricula</th>
+                                        <th>Referenica</th>
+                                        <th>Docente</th>
+                                        <th>Grupo</th>
+                                        <th>Comprobante</th>
+                                        <th>Revisado</th>
+                                        <th>Modificar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            @using (Html.BeginForm("UpdPapeleta", "Home", FormMethod.Post, new { id = "frm-updPapeleta" }))
+                                            {
+                                                <td>
+                                                    @*<label>@item.Materia</label>*@
+                                                    <input id="Materia" name="Materia" type="text" value="@item.Materia" readonly style="width:200px"/>
+                                                </td>
+                                                <td>
+                                                    <label>@item.idPlantel</label>
+                                                </td>
+                                                <td>
+                                                    <label style="width:150px">@item.Alumno</label>
+                                                </td>
+                                                <td>
+                                                    @*<label>@item.Matricula</label>*@
+                                                    <input id="Matricula" name="Matricula" type="text" value="@item.Matricula" readonly style="width:100px"/>
+                                                </td>
+                                                <td>
+                                                    <label>@item.Referencia</label>
+                                                </td>
+                                                <td>
+                                                    @*<label style="width:200px">@item.Docente</label>*@
+                                                    <input id="Docente" name="Docente" type="text" value="@item.Docente" readonly style="width:300px"/>
+                                                    @*<select id="Docente" name="Docente">
+                                                            <option value="@item.Docente">@item.Docente</option>
+                                                            @foreach (var Docente in ViewBag.Docentes)
+                                                            {
+                                                                <option value="@Docente.id">@Docente.Nombre @Docente.ApellidoPaterno @Docente.ApellidoMaterno</option>
+                                                            }
+                                                        </select>*@
+                                                </td>
+                                                <td>
+                                                    @*<label>@item.Grupo</label>*@
+                                                    <input id="Grupo" name="Grupo" type="text" value="@item.Grupo" readonly style="width:50px"/>
+                                                    @*<select id="Grupo" name="Grupo">
+                                                            <option value="@item.Grupo">@item.Grupo</option>
+                                                            @foreach (var Grupos in ViewBag.Grupos)
+                                                            {
+                                                            <option value="@Grupos.idGrupo">@Grupos.CveGrupo</option>
+                                                            }
+                                                        </select>*@
+                                                </td>
+                                                <td>
+                                                    @if (@item.Comprobante != "")
+                                                    {
+                                                        <div data-toggle="modal" data-target="#diplomaModal">
+                                                            <img src="~/Comprobantes/@item.Comprobante" style="width: 40px; height: 42px" alt="Comprobante">
+                                                        </div>
+                                                        <div class="modal fade" id="diplomaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="ModalLabelDiploma">Comprobante de Pago</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <img src="~/Comprobantes/@item.Comprobante" @*style="width: 100px; height: 100px"*@ alt="Comprobante">
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>No hay comprobante</label>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (@item.Revisado == "on")
+                                                    {
+                                                        <center><input type="checkbox" id="Revisado" name="Revisado" checked /></center>
+                                                    }
+                                                    else
+                                                    {
+                                                        <center><input type="checkbox" id="Revisado" name="Revisado" /></center>
+                                                    }
+
+                                                </td>
+                                                <td>
+                                                    <input type="submit" class="btn btn-success" value="Actualizar" />
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- DataTable -->
+        </div>
+    }
+    else
+    {
+        <br />
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow mb-4">
+                    <p>No se han registrado papeletas de este plantel</p><br />
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

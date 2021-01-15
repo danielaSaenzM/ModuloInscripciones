@@ -1,0 +1,180 @@
+﻿@model IncripcionesCobach.Models.InscripcionViewModel
+@{
+    ViewBag.Title = "Realizar Pago Sociedad de Alumnos";
+}
+
+@{
+    var fecha = Model.Fecha.ToString("dd/MM/yyyy");
+}
+<div class="jumbotron text-center">
+    <h2>COLEGIO DE BACHILLERES DEL ESTADO DE CHIHUAHUA</h2>
+    <p class="lead">Pago Sociedad de Alumnos</p>
+
+</div>
+
+<br />
+<form action="https://www.adquiramexico.com.mx:443/mExpress/pago/avanzado" method="post" />
+    <div class="container">
+        <fieldset class="form-horizontal">
+            <div class="row">
+                <div class="alert alert-info text-center">
+                    <strong>IMPORTANTE!</strong> Verificar que los datos sean correctos!
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-12">
+                    <label for="txtFecha" class="control-label  col-sm-3 col-md-3 col-sm-offset-6 col-md-offset-6 input-sm">Fecha :</label>
+                    <div class="input-group col-sm-3 col-md-3">
+                        <span class="input-group-addon input-group-sm">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                        <input id="txtFecha" name="txtFecha" type="text" style="vertical-align: middle; text-align: center;" class="form-control input-sm fechas" readonly value="@fecha" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-12 input-group-sm  matricula">
+                    <label for="txtMatricula" class="control-label  col-sm-2 col-md-2 input-sm">Matrícula :</label>
+                    <div class="input-group col-sm-3 col-md-3">
+                        <span class="input-group-addon input-group-sm">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                        @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-12">
+                    <label for="txtFolio" class="control-label  col-sm-2 col-md-2  input-sm">Referencia :</label>
+                    <div class="input-group col-sm-3 col-md-3">
+                        @Html.EditorFor(model => model.Referencia, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-12 input-group-sm nombre">
+                    <label for="txtNombre" class="control-label  col-sm-2 col-md-2 input-sm">Nombre  :</label>
+                    <div class="input-group col-sm-10 col-md-10">
+                        @Html.EditorFor(model => model.NombreCompleto, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-12 input-group-sm">
+                    <label for="cbPlantel" class="control-label  col-sm-2 col-md-2 input-sm">Grupo :</label>
+                    <div class="input-group col-sm-10 col-md-10">
+                        @Html.EditorFor(model => model.CveGrupo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-12 input-group-sm">
+                    <label for="cbPlantel" class="control-label  col-sm-2 col-md-2 input-sm">Semestre :</label>
+                    <div class="input-group col-sm-10 col-md-10">
+                        @Html.EditorFor(model => model.Semestre, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+    <div class="container">
+        <table id="dtItems" class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Concepto</th>
+                    <th>Importe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> 1</td>
+                    <td>213</td>
+                    <td>@Model.sociedadAlumnos.00</td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th style="text-align: right">Total:</th>
+                    <th>$@Model.sociedadAlumnos.00</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="form-group">
+                    <label for="txtPago" class="control-label input-sm col-sm-2 col-md-2 col-sm-offset-8 col-md-offset-8" style="text-align: right">Pagar :</label>
+                    <div class="input-group col-sm-2 col-md-2 input-group-sm">
+                        <span class="input-group-addon input-group-sm">
+                            <span class="glyphicon glyphicon-usd "></span>
+                        </span>
+                        <input id="txtPago" name="txtPago" type="text" style="vertical-align: middle; text-align: right;" readonly="readonly" class="form-control input-sm Qty QtyOnly" value="0.00" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="form-group">
+                    <label for="txtCambio" class="control-label input-sm col-sm-2 col-md-2 col-sm-offset-8 col-md-offset-8" style="text-align: right">Cambio :</label>
+                    <div class="input-group col-sm-2 col-md-2 input-group-sm">
+                        <span class="input-group-addon input-group-sm">
+                            <span class="glyphicon glyphicon-usd "></span>
+                        </span>
+                        <input id="txtCambio" name="txtCambio" type="text" style="vertical-align: middle; text-align: right;" class="form-control input-sm Qty QtyOnly" value="0.00" readonly="readonly" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="form-group">
+                    <label for="txtSaldo" class="control-label input-sm col-sm-2 col-md-2 col-sm-offset-8 col-md-offset-8" style="text-align: right">Saldo :</label>
+                    <div class="input-group col-sm-2 col-md-2 input-group-sm">
+                        <span class="input-group-addon input-group-sm">
+                            <span class="glyphicon glyphicon-usd "></span>
+                        </span>
+                        <input id="txtSaldo" name="txtSaldo" type="text" style="vertical-align: middle; text-align: right;" class="form-control input-sm Qty QtyOnly" value="0.00" readonly="readonly" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="form-group">
+                    <div class=" input-group  col-sm-offset-10 col-sm-2 col-md-offset-10 col-md-2" style="text-align: right">
+                        <button class="btn btn-default">
+                            <img id="btnPagar"  src="https://dicff9jl33o1o.cloudfront.net/verticales/bexpress/resources/img/icon/paybutton_4.png" alt="Alternate Text" />
+                            Realizar Pago
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="importe" value="0" />
+    <input type="hidden" name="referencia" value="0" />
+    <input type="hidden" name="urlretorno" value="http://appsrv2016.cobachih.edu.mx/modinscripcion/Pago/returnPago" />
+    <input type="hidden" name="idexpress" value="1997" />
+    <input type="hidden" name="financiamiento" value="0" />
+    <input type="hidden" name="plazos" value="" />
+    <input type="hidden" name="mediospago" value="100000" />
+</form>
+
+
+
+

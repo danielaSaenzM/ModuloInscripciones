@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <script>
+        $("#li_4").addClass('disabled');
+    </script>
+    <style>
+        .disabled {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-lg-12 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4>SUBIR COMPROBANTE DE PAGO</h4>
+            </div>
+            <div class="card-body">
+                <center>
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card shadow mb-4">
+                                <h4>
+                                    <b>1. </b>Escribe tu nombre y matricula en el comprobante.<br />
+                                    <b>2. </b>Toma una foto del comprobante de pago.<br />
+                                    <b>3. </b>Selecciona la foto en el recuadro de abajo.<br />
+                                    <b>4. </b>Da click al boton "Subir Comprobante".<br />
+                                    <b>5. </b>Si el mensaje es EXITOSO ya puedes cerrar la ventana.<br />
+                                </h4><br />
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("UploadImg", "Home", FormMethod.Post, FormMethod.Post,
+                                                            new { enctype = "multipart/form-data" }))
+                    {
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="form-group">
+                                <label>SUBIR IMAGEN: <b>Máximo 5 MB</b></label>
+                                <input type="file" id="file" name="file" accept="image/*" required /><br />
+                                <br>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Subir Comprobante" /><br />
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card shadow mb-4">
+                                <p>@ViewBag.Mensaje</p><br />
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = @ViewBag.Title;
+}
+<div class="row">
+    <br />
+    <div class="col-lg-12 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4>SUBIR COMPROBANTE DE PAGO</h4>
+            </div>
+            <div class="card-body">
+                <center>
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card shadow mb-4">
+                                <h4>
+                                    <p>Subir una fotografía de los dos comprobantes (Inscripcion y Sociedad De Alumnos) y escribir con <strong>TINTA AZUL</strong> en los dos comprobantes:</p>
+                                    <b>1. </b>Escribe tu nombre y matricula en el comprobante.<br />
+                                    <b>2. </b>Plantel y Turno<br />
+                                    <b>3. </b>Grupo Actual<br />
+                                    <b>4. </b>Semestre Actual: 2021-A<br />
+                                </h4><br />
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("UploadImg", "Pago", FormMethod.Post, FormMethod.Post,
+                                                            new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="row">
+                            <div class="col-lg-12 mb-4">
+                                <div class="form-group">
+                                    <label>SUBIR IMAGEN: <b>Máximo 5 MB</b></label>
+                                    <input type="file" id="file" name="file" accept="image/*" required /><br />
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 mb-4">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Subir Comprobante" /><br />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card shadow mb-4">
+                                <p>@ViewBag.Mensaje</p><br />
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+
+

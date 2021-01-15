@@ -1,0 +1,513 @@
+﻿@model List<IncripcionesCobach.Models.MateriasAlumno>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <script>
+        var dInput;
+        var dInput2;
+        var form;
+        var rows_selected;
+
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                'paging': true,
+                'scrollX': true,
+                'pageLength': 10,
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
+                ],
+                'select': {
+                    'style': 'multi'
+                },
+                'order': [[1, 'asc']],
+                "bPaginate": false,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bInfo": false,
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var contador = 1;
+
+            $("#example tbody").on('click', 'tr', function () {
+
+                var clase = $(this).hasClass("selected");
+                //if (clase) {
+                var rowData = $(this).children("td").map(function () {
+                    return $(this).text();
+                }).get();
+
+                var trid = $(this).closest('tr').attr('id'); // table row ID
+
+                $("#idAlumno_tr").val(rowData[1]);
+                $("#Alumno_tr").val(rowData[2]);
+                $("#Matricula_tr").val(rowData[3]);
+
+                $("#idMateria" + contador).val(rowData[4]);
+                $("#Materia" + contador).val(rowData[5]);
+                $("#idSemestre" + contador).val(rowData[6]);
+                $("#Docente" + contador).val(rowData[10]);
+                $("#Grupo" + contador).val(rowData[11]);
+
+                $("#idPlantel_ID_tr").val(rowData[12]);
+                $("#CostoMateria_tr").val(rowData[7]);
+                $("#CIE_tr").val(rowData[8]);
+                $("#idPlantel_tr").val(rowData[9]);
+                $("#Referencia").val(rowData[13]);
+
+                contador = contador + 1;
+
+                //} else {
+                //    //get row contents into an array
+                //    var rowData = $(this).children("td").map(function () {
+                //        return $(this).text();
+                //    }).get();
+
+                //    var trid = $(this).closest('tr').attr('id'); // table row ID
+
+                //    $("#idSemestre" + contador).val("");
+                //    $("#idMateria" + contador).val("");
+                //    $("#Materia" + contador).val("");
+                //    $("#DatExam" + contador).val("");
+
+                //    $("#idSemestre" + contador).val("");
+                //    $("#idMateria" + contador).val("");
+                //    $("#Materia" + contador).val("");
+                //    $("#DatExam" + contador).val("");
+
+                //        $("#idSemestre" + contador).val("");
+                //        $("#idMateria" + contador).val("");
+                //        $("#Materia" + contador).val("");
+                //    $("#DatExam" + contador).val("");
+
+                //        $("#idSemestre" + contador).val("");
+                //        $("#idMateria" + contador).val("");
+                //        $("#Materia" + contador).val("");
+                //        $("#DatExam" + contador).val("");
+
+                //    contador = contador - 1;
+                //}
+
+            });
+        });
+    </script>
+    <script>
+        $("#li_4").addClass('disabled');
+    </script>
+    <style>
+        .disabled {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>@ViewBag.Title:</h2>
+    @if ((string)TempData["empty"] != "EMPTY") //ViewBag.Countrows != 0 || ViewBag.Countrows != null ||
+    {
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow mb-4">
+                    <h4>
+                        <b>1.</b>En la tabla a continuación aparecen sus materias con adeudo,<br />
+                        Seleccione los exámenes que desea presentar dando click en la materia.
+                    </h4><br />
+                    <h4>
+                        <b>En el orden que selecciones tus materias</b> serán los días de aplicación.<br />
+                    </h4><br />
+                    <h4>
+                        <b>2.</b>Selecciona un máximo de <b>4 materias</b>,<br />
+                        si quieres cambiar tu selección, pulsa el botón de "Limpiar Seleccion"
+                    </h4><br />
+                    <h4>
+                        Al final del semestre solo podrás tener adeudo de <b>3 materias</b>,<br />
+                        selecciona las suficientes para no ser dado de baja.
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <!-- DataTable -->
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <form id="frm-example" action="" method="post">
+                                <table id="example" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>No.Alumno</th>
+                                            <th>Alumno</th>
+                                            <th>Matricula</th>
+                                            <th>No.Materia</th>
+                                            <th>Materia</th>
+                                            <th>Semestre</th>
+                                            <th>Costo Materia</th>
+                                            <th>CIE</th>
+                                            <th>Plantel</th>
+                                            <th>Docente</th>
+                                            <th>Grupo</th>
+                                            <th>ID Plantel</th>
+                                            <th>Referencia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{int i = 0;}
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr id="@i">
+                                                <td></td>
+                                                <td>@item.idAlumno</td>
+                                                <td>@item.Alumno</td>
+                                                <td>@item.Matricula</td>
+                                                <td>@item.idMateria</td>
+                                                <td>@item.Materia</td>
+                                                <td>@item.idSemestre</td>
+                                                <td>$@item.CostoMateria.00</td>
+                                                <td>@item.CIE</td>
+                                                <td>@item.idPlantel</td>
+                                                <td>@item.Docente</td>
+                                                <td>@item.Grupo</td>
+                                                <td>@item.idPlantel_ID</td>
+                                                <td>@item.Referencia</td>
+                                            </tr>
+                                            { i++; }
+                                        }
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- DataTable -->
+        </div>
+        <center>
+            <div class="row">
+                <div class="col-lg-12 col-md-4">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Limpiar Selecciones" onClick="window.location.reload();" />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </center>
+        <br />
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow mb-4">
+                    <p><b>2.</b>Verifica la fecha de tus examenes seleccionados.</p>
+                    <p><b>Una vez generada tu papeleta, no podrás modificarla</b></p><br />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        @using (Html.BeginForm("PickDocente", "Home", FormMethod.Post, new { id = "frm-materias" }))
+                        {
+                            <div class="row">
+                                @if (ViewBag.Countrows >= 1)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 1:</label>
+                                                <input type="text" id="Materia1" name="Materia1" style="width:250px" required readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria1" name="idMateria1" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre1" name="idSemestre1" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <input type="text" id="Docente1" name="Docente1" style="width:250px" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo1" name="Grupo1" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <input type="text" id="DatExam1" name="DatExam1" value="01/18/2021" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+
+                                }
+                                @if (ViewBag.Countrows >= 2)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 2:</label>
+                                                <input type="text" id="Materia2" name="Materia2" style="width:250px" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria2" name="idMateria2" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre2" name="idSemestre2" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <input type="text" id="Docente2" name="Docente2" style="width:250px" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo2" name="Grupo2" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <input type="text" id="DatExam2" name="DatExam2" value="01/19/2021" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+                                }
+                                @if (ViewBag.Countrows >= 3)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 3:</label>
+                                                <input type="text" id="Materia3" name="Materia3" style="width:250px" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria3" name="idMateria3" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre3" name="idSemestre3" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <input type="text" id="Docente3" name="Docente3" style="width:250px" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo3" name="Grupo3" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <input type="text" id="DatExam3" name="DatExam3" value="01/20/2021" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+                                }
+                                @if (ViewBag.Countrows >= 4)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 4:</label>
+                                                <input type="text" id="Materia4" name="Materia4" style="width:250px" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria4" name="idMateria4" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre4" name="idSemestre4" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <input type="text" id="Docente4" name="Docente4" style="width:250px" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo4" name="Grupo4" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <select id="DatExam4" name="DatExam4">
+                                                    <option value="01/18/2021">01/18/2021</option>
+                                                    <option value="01/19/2021">01/19/2021</option>
+                                                    <option value="01/20/2021">01/20/2021</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+                                }
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>idAlumno:</label>
+                                            <input type="text" id="idAlumno_tr" name="idAlumno_tr" readonly />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Alumno:</label>
+                                            <input type="text" id="Alumno_tr" name="Alumno_tr" readonly />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Matricula:</label>
+                                            <input type="text" id="Matricula_tr" name="Matricula_tr" readonly required />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Costo Unitario:</label>
+                                            <input type="text" id="CostoMateria_tr" name="CostoMateria_tr" readonly />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>CIE:</label>
+                                            <input type="text" id="CIE_tr" name="CIE_tr" readonly />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Plantel:</label>
+                                            <input type="text" id="idPlantel_tr" name="idPlantel_tr" readonly />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Id Plantel:</label>
+                                            <input type="text" id="idPlantel_ID_tr" name="idPlantel_ID_tr" readonly />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Referencia:</label>
+                                            <input type="text" id="Referencia" name="Referencia" readonly />
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <center>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-4">
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-success" value="Generar Papeleta" />
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <br />
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow mb-4">
+                    <p>No tienes materias con adeudo.</p><br />
+                    <p>La información en ésta página puede no estar actualizada, para cualquier duda favor de contactar a tu plantel directamente.</p><br />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow mb-4">
+                    <p>¿Necesitas imprimir nuevamente tu papeleta?</p><br />
+                    <p>Consultala:</p><br />
+                    @using (Html.BeginForm("DisplayPapeleta2", "Home", FormMethod.Post, new { id = "frm-display" }))
+                    {
+                        <div class="col-md-4" hidden>
+                            <div class="form-group">
+                                <label>Matricula:</label>
+                                <input type="text" id="Matricula" name="Matricula" value="@Session["Matricula"]" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Consultar" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model IncripcionesCobach.Models.InscripcionViewModel
+<div class="container rend">
+
+    <br />
+    <div class="row border1" id="sociedad">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <img class="bbva" src="~/Content/Imagen/bbva.jpg" />
+            </div>
+            <div class="col-md-6">
+
+                <h3>SOCIEDAD DE ALUMNOS SEM 20-B</h3>
+            </div>
+            <div class="col-md-2">
+                <img class="rad" src="~/Content/Imagen/radiolito.png" />
+
+            </div>
+        </div>
+        <div class="col-md-12 border2">
+            <table class="table">
+                <tr>
+                    <td>
+                        Nombre del Cliente
+                    </td>
+                    <td>
+                        CIE
+                    </td>
+                    <td>
+                        Importe
+                    </td>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <b>Colegio de Bachilleres del Estado de Chihuahua</b>
+                        </td>
+                        <td class="infoImport">
+                            <b>@Model.CIE</b>
+                        </td>
+                        <td class="infoImport">
+                            <b>@string.Format("{0:#.00}", Convert.ToDecimal(Model.sociedadAlumnos) / 100);</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12">
+            <br />
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <li class="list-group-item ">Referencia: <b class="infoImport">991100001</b> </li>
+                    <li class="list-group-item">Nombre: <b class="infoImport">@Model.NombreCompleto</b></li>
+                    <li class="list-group-item">Concepto: <b class="infoImport">204</b></li>
+                </ul>
+
+            </div>
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <li class="list-group-item">Matrícula: <b>@Model.Matricula</b> </li>
+                    <li class="list-group-item">Grupo: <b>@Model.CveGrupo</b></li>
+                    <li class="list-group-item">Semestre: <b>2</b></li>
+                </ul>
+            </div>
+            <div class="col-md-12 text-center">
+                <h2> FICHA DE DEPÓSITO  <strong><u>INTRANSFERIBLE</u></strong>, APLICA EXCLUSIVAMENTE AL ALUMNO Y SEMESTRE SEÑALADOS. EVITA APARECER COMO DEUDOR. </h2>
+            </div>
+        </div>
+    </div>
+</div>
+

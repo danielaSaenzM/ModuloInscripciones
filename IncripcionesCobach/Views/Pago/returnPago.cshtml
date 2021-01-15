@@ -1,0 +1,65 @@
+﻿@model IncripcionesCobach.Models.pago
+@{
+    ViewBag.Title = "Comprobante de Pago";
+}
+<form>
+
+    <div id="divcomprobante" style="margin:20px auto; width:60%">
+        <table style="width:100%">
+            <tr style="width:100%">
+                <td style="width:100%;  vertical-align: top;  ">
+                    <div runat="server" id="encabezado" style="width:100%; text-align:center; background-color: #006600;">
+                        <label style=" text-align:center;  color: #FFFFFF; font-weight: bold; font-style: normal; font-size: 30px">Comprobante de Pago</label>
+                    </div>
+                    <div runat="server" id="Div1" style="width:100%;  font-size: 20px; background-color: #E1FFE1;">
+                        <img src="~/Content/Imagen/logo Sitio.png" />
+                    </div>
+                    <div runat="server" id="datos" style="width:100%;  font-size: 20px; background-color: #E1FFE1;">
+                      
+                        <ul class="list-group text-center">
+                            <li class="list-group-item">Mensaje : @Model.mensaje</li>
+                            <li class="list-group-item">Folio : @Model.s_transm</li>
+                            <li class="list-group-item">Referencia : @Model.referencia</li>
+                            <li class="list-group-item"> Importe :$ @Model.importe</li>
+                            <li class="list-group-item">Titular de la Tarjeta : @Model.tarjetahabiente</li>
+                            <li class="list-group-item">Autorización : @Model.autorizacion</li>
+                        </ul>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info text-justify">
+                <strong>Notificación!</strong> <h3>EL PAGO SE HA REALIZADO CORRECTAMENTE, FAVOR DE GUARDAR EL RECIBO QUE SE LE HA ENVIADO.</h3>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div style="margin:0 auto; width:60%">
+    <input type="button" onclick="genPDF();" value="Descargar Comprobante" />
+</div>
+<script type="text/javascript">
+    function genPDF() {
+        html2canvas(document.getElementById('divcomprobante')).then(
+            function (canvas) {
+                var doc = new jsPDF();
+                var width = doc.internal.pageSize.getWidth();
+                var height = doc.internal.pageSize.getHeight();
+                var img = canvas.toDataURL('image/png');
+
+                doc.addImage(img, 'JPEG', 5, 5, 200, 100);
+                doc.save('test.pdf');
+            }
+        );
+    }
+
+
+
+</script>
+

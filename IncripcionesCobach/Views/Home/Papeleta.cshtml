@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title = "Generar Papeleta de Pago"</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script>
+        $("#li_4").addClass('disabled');
+    </script>
+    <style>
+        .disabled {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+    <style>
+        .img {
+            width: 100px;
+        }
+
+        #cobach {
+            font-size: 10px;
+        }
+
+        .border1 {
+            border: 3px solid;
+        }
+
+        .border2 {
+            border-bottom: 1px solid;
+            border-top: 1px solid;
+            background-color: gainsboro;
+        }
+
+        .border3 {
+            border-bottom: 1px solid;
+            border-top: 1px solid;
+        }
+
+        .back {
+            background-color: gainsboro;
+        }
+
+        .concepto {
+            font-size: x-large;
+        }
+
+        .admision {
+            padding: 12px;
+            background-color: #008574;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        .importante {
+            padding: 8px;
+            background-color: #b2dbd5;
+            font-weight: 600;
+            border-radius: 10px;
+            margin-left: 95px;
+        }
+
+        .plantel {
+            color: #008574;
+            font-weight: 900;
+            font-size: xx-large;
+        }
+
+        .ref {
+            background-color: #b2dbd5;
+            font-weight: 900;
+            font-size: x-large;
+            padding: 5px;
+            max-width: 300px;
+            margin-left: 450px;
+        }
+
+        .banco {
+            width: 110px;
+        }
+    </style>
+    <style type="text/css">
+        li {
+            color: #5499C7;
+            font-weight: 600;
+            list-style: none;
+        }
+
+        strong.black {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <input type="button" id="button_1" name="button_1" value="Descargar PDF" onclick="genPDF();" class="btn btn-success" />
+            @*<input type="button" id="button_2" name="button_2" value="Imprimir" onclick="printPage('fichaPago')" class="btn btn-success" />*@
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <table class="table" border="1">
+            <tr>
+                <td colspan="3" align="center"> <h4><strong>Datos del Alumno</strong></h4></td>
+
+            </tr>
+            <tr>
+
+                <td align="center"><strong>Nombre</strong></td>
+                <td align="center"><strong>Matricula</strong></td>
+                <td align="center"><strong>Correo</strong></td>
+
+            </tr>
+            <tr>
+                <td align="center">@ViewData["Alumno"]</td>
+                <td align="center">@ViewData["Matricula"]</td>
+                <td align="center">@ViewData["Correo"]</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <h4><strong>EXAMEN EXTRAORDINARIO</strong></h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Plantel @ViewData["idPlantel"]</h4>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <p><strong>Instrucciónes para Realizar el Pago en PRACTI-CAJA:</strong></p>
+                        <ul>
+                            <li>1.-Presionar la opción <strong class="black">"PAGO DE SERVICIOS".</strong></li>
+                            <li>2.-Introducir el número de convenio <strong class="black">"CIE".</strong></li>
+                            <li>3.-Introducir <strong class="black">REFERENCIA.</strong></li>
+                            <li>4.-Introducir el <strong class="black">MONTO</strong> y el <strong class="black">CONCEPTO (3 números).</strong></li>
+                        </ul>
+                        <p>FICHA DE DEPOSITO <strong>INTRASFERIBLE</strong>, APLICA EXCLUSIVAMENTE AL ALUMNO Y MATERIA(S) SEÑALADOS EN ESTA PAPELETA.</p>
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <h4><strong>PAGO DE EXAMEN EXTRAORDINARIO</strong></h4>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <p><strong>Instrucciónes para Realizar el Pago en PRACTI-CAJA:</strong></p>
+                        <ul>
+                            <li><strong class="black">1.-CIE</strong>: <label>@ViewData["CIE"]</label></li>
+                            <li><strong class="black">2.-REFERENCIA</strong>: <label>@ViewData["Referencia"]</label></li>
+                            <li><strong class="black">3.-MONTO</strong>: <label> @ViewData["CostoMateria"]</label></li>
+                            <li><strong class="black">4.-CONCEPTO</strong>: <label>(concepto)</label></li>
+                            <li><strong class="black">5.-MATERIA(S) & FECHA EXAMEN</strong>:</li>
+                                @foreach (var Materia in ViewBag.Materias)
+                                {
+                                    <li><label>@Materia.Materia</label></li>
+                                }
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function genPDF() {
+            html2canvas(document.getElementById('fichaPago')).then(
+                function (canvas) {
+                    var doc = new jsPDF("p", "mm", "a4");
+                    var width = doc.internal.pageSize.getWidth();
+                    var height = doc.internal.pageSize.getHeight();
+                    var img = canvas.toDataURL('image/png');
+
+                    doc.addImage(img, 'JPEG', 5, 5, 200, 100);
+                    doc.save('Pago.pdf');
+                }
+            );
+        }
+    </script>
+    <script>
+        function printPage(PrintModal) {
+            var printContent = document.getElementById(PrintModal);
+
+            //document.getElementById('ClosePageButton').style.visibility = 'hidden';
+            //document.getElementById('printPageButton').style.visibility = 'hidden';
+
+            var windowUrl = 'about:blank';
+            var uniqueName = new Date();
+            var windowName = 'Print' + uniqueName.getTime();
+            var printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
+
+            printWindow.document.write(printContent.innerHTML);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+
+            document.getElementById('button_1').style.visibility = 'visible';
+            document.getElementById('button_2').style.visibility = 'visible';
+        }
+    </script>
+</body>
+</html>

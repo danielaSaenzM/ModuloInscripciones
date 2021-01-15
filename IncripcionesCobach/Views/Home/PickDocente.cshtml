@@ -1,0 +1,314 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Confirmar Docentes</title>
+</head>
+
+<body>
+    <br />
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4">
+                <h3>
+                    <b>3.</b>Confirma los maestros para cada materia seleccionada en el proceso anterior.
+                </h3><br />
+                <h3>
+                    Para las materias del semestre actual, el maestro será con el que se presentó el curso.
+                </h3><br />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    @using (Html.BeginForm("Papeleta", "Home", FormMethod.Post, new { id = "frm-materias" }))
+                    {
+                        foreach (var Materia in ViewBag.Papeleta)
+                        {
+                            <div class="row">
+                                @if (Materia.Materia1 != "")
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 1:</label>
+                                                <input type="text" id="Materia1" name="Materia1" style="width:250px" value="@Materia.Materia1" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria1" name="idMateria1" value="@Materia.idMateria1" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre1" name="idSemestre1" value="@Materia.idSemestre1" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <select id="Docente1" name="Docente1">
+                                                    @foreach (var Docente in ViewBag.Docentes1)
+                                                    {
+                                                        <option value="@Docente.id @Docente.Nombre">@Docente.Nombre</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo1" name="Grupo1" value="@Materia.Grupo1" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <input type="text" id="DatExam1" name="DatExam1" value="@Materia.DatExam1" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+
+                                }
+                                @if (Materia.Materia2 != "")
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 2:</label>
+                                                <input type="text" id="Materia2" name="Materia2" style="width:250px" value="@Materia.Materia2" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria2" name="idMateria2" value="@Materia.idMateria2" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre2" name="idSemestre2" value="@Materia.idSemestre2" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <select id="Docente2" name="Docente2">
+                                                    @foreach (var Docente in ViewBag.Docentes2)
+                                                    {
+                                                        <option value="@Docente.id @Docente.Nombre">@Docente.Nombre</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo2" name="Grupo2" value="@Materia.Grupo2" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <input type="text" id="DatExam2" name="DatExam2" value="@Materia.DatExam2" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+                                }
+                                @if (Materia.Materia3 != "")
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 3:</label>
+                                                <input type="text" id="Materia3" name="Materia3" style="width:250px" value="@Materia.Materia3" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria3" name="idMateria3" value="@Materia.idMateria3" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre3" name="idSemestre3" value="@Materia.idSemestre3" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <select id="Docente3" name="Docente3">
+                                                    @foreach (var Docente in ViewBag.Docentes3)
+                                                    {
+                                                        <option value="@Docente.id @Docente.Nombre">@Docente.Nombre</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo3" name="Grupo3" value="@Materia.Grupo3" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <input type="text" id="DatExam3" name="DatExam3" value="@Materia.DatExam3" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+                                }
+                                @if (Materia.Materia4 != "")
+                                {
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Materia 4:</label>
+                                                <input type="text" id="Materia4" name="Materia4" style="width:250px" value="@Materia.Materia4" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idMateria:</label>
+                                                <input type="text" id="idMateria4" name="idMateria4" value="@Materia.idMateria4" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>idSemestre:</label>
+                                                <input type="text" id="idSemestre4" name="idSemestre4" value="@Materia.idSemestre4" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Docente:</label>
+                                                <select id="Docente4" name="Docente4">
+                                                    @foreach (var Docente in ViewBag.Docentes4)
+                                                    {
+                                                        <option value="@Docente.id @Docente.Nombre">@Docente.Nombre</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" hidden>
+                                                <label>Grupo:</label>
+                                                <input type="text" id="Grupo4" name="Grupo4" value="@Materia.Grupo4" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Fecha Examen:</label>
+                                                <input type="text" id="DatExam4" name="DatExam4" value="@Materia.DatExam4" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="background-color:#008574; height:5px;width: 95%;" /><br />
+                                }
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>idAlumno:</label>
+                                            <input type="text" id="idAlumno_tr" name="idAlumno_tr" value="@Materia.idAlumno_tr" />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Alumno:</label>
+                                            <input type="text" id="Alumno_tr" name="Alumno_tr" value="@Materia.Alumno_tr" />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Matricula:</label>
+                                            <input type="text" id="Matricula_tr" name="Matricula_tr" value="@Materia.Matricula_tr" />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Costo Unitario:</label>
+                                            <input type="text" id="CostoMateria_tr" name="CostoMateria_tr" value="@Materia.CostoMateria_tr" />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>CIE:</label>
+                                            <input type="text" id="CIE_tr" name="CIE_tr" value="@Materia.CIE_tr" />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Plantel:</label>
+                                            <input type="text" id="idPlantel_tr" name="idPlantel_tr" value="@Materia.idPlantel_tr" />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" hidden>
+                                            <label>Id Plantel:</label>
+                                            <input type="text" id="idPlantel_ID_tr" name="idPlantel_ID_tr" value="@Materia.idPlantel_ID_tr" />
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div class="form-group" hidden>
+                                        <label>Referencia:</label>
+                                        <input type="text" id="Referencia" name="Referencia" value="@Materia.Referencia" />
+                                        <br>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <br />
+                        }
+                        <center>
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <div class="card shadow mb-4">
+                                        <p>
+                                            <b>Una vez generada tu papeleta no habrá modificaciones</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                        <br />
+                        <center>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-4">
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-success" value="Generar Papeleta" />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
